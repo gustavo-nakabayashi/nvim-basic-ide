@@ -52,7 +52,6 @@ return packer.startup(function(use)
   use { "kyazdani42/nvim-web-devicons", commit = "563f3635c2d8a7be7933b9e547f7c178ba0d4352" }
   use { "kyazdani42/nvim-tree.lua", commit = "7282f7de8aedf861fe0162a559fc2b214383c51c" }
   use { "akinsho/bufferline.nvim", commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4" }
-  use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
   use { "nvim-lualine/lualine.nvim", commit = "a52f078026b27694d2290e34efa61a6e4a690621" }
   use { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" }
   use { "ahmedkhalf/project.nvim", commit = "628de7e433dd503e782831fe150bb750e56e55d6" }
@@ -63,6 +62,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" }
   use { "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" }
+  use { "morhetz/gruvbox" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin
@@ -95,11 +95,36 @@ return packer.startup(function(use)
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" }
+  use { "github/copilot.vim", commit = "2f4f9259a5c0f927b31c4256cd3e4d7c6df87662" }
 
   -- DAP
   use { "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" }
   use { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+
+  -- Harpoon
+  use { "ThePrimeagen/harpoon", commit = "21d0d1bfa3000e4384740bfaefa0ebc51c773786" }
+  use { 'kana/vim-textobj-user', commit = "41a675ddbeefd6a93664a4dc52f302fe3086a933" }
+  use { 'kana/vim-textobj-entire', commit = "64a856c9dff3425ed8a863b9ec0a21dbaee6fb3a", requires = {'kana/vim-textobj-user'}}
+  use { 'f-person/git-blame.nvim', commit = "d3afb1c57918720548effb42edec530232436378" }
+  use { 'mattn/emmet-vim', commit = "def5d57a1ae5afb1b96ebe83c4652d1c03640f4d" }
+  use { 'michaeljsmith/vim-indent-object', commit = "5c5b24c959478929b54a9e831a8e2e651a465965" }
+  use { 'wellle/targets.vim', commit = "8d6ff2984cdfaebe5b7a6eee8f226a6dd1226f2d" } -- adds various text objects to give you more targets to operate on.
+  use { 'tpope/vim-surround', commit = "3d188ed2113431cf8dac77be61b842acb64433d9" }
+  use { 'mhinz/vim-grepper', commit = "2b93535752ffcb312f9fab73d90e80dc9f2e60fc" }
+  use { 'tpope/vim-repeat', commit = "24afe922e6a05891756ecf331f39a1f6743d3d5a" }
+  use {
+    "andymass/vim-matchup",
+    commit = "55e3330436784fb8ccc35a5cfeb13e48bab9dcd2",
+    event = "CursorMoved",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  } -- It extends vim's % key to language-specific words instead of just single characters.
+  use { 'bronson/vim-visual-star-search', commit = "7c32edb9e3c85d473d9be4dec721a4c9d5d4d69c" }
+  use { 'Pocco81/auto-save.nvim', commit = "979b6c82f60cfa80f4cf437d77446d0ded0addf0" }
+  use { 'nvim-treesitter/nvim-treesitter-context', commit = "5d0367be7471f50c6b5f8338521b9e851b1d177d" }
+  use { 'djoshea/vim-autoread', commit = "7e83d47a71fdafc271005fc39c89863204278c77" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
