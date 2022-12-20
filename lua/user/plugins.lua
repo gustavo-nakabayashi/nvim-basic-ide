@@ -125,6 +125,8 @@ return packer.startup(function(use)
   use { 'Pocco81/auto-save.nvim', commit = "979b6c82f60cfa80f4cf437d77446d0ded0addf0" }
   use { 'nvim-treesitter/nvim-treesitter-context', commit = "5d0367be7471f50c6b5f8338521b9e851b1d177d" }
   use { 'djoshea/vim-autoread', commit = "7e83d47a71fdafc271005fc39c89863204278c77" }
+  use { 'mbbill/undotree', commit = "1a23ea84bd02c34f50d8e10a8b4bfc89597ffe4e" }
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -59,13 +59,22 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>sf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>sw", ":GrepperGrep <C-r><C-w><CR>")
+
+-- UndoTree
+keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
+
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", opts)
+keymap("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", opts)
+keymap("n", "<leader>gk", "<cmd>Gitsigns prev_hunk<CR>", opts)
+keymap("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
@@ -108,9 +117,9 @@ keymap("n", "<leader>d", "\"_d")
 keymap("v", "<leader>d", "\"_d")
 
 
-keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
-keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
-keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
-keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
+keymap("n", "<C-j>", "<cmd>cnext<CR>zz")
+keymap("n", "<C-k>", "<cmd>cprev<CR>zz")
+keymap("n", "<leader>j", "<cmd>lnext<CR>zz")
+keymap("n", "<leader>k", "<cmd>lprev<CR>zz")
 
-keymap("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+keymap("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
