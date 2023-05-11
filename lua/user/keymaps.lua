@@ -19,12 +19,6 @@ keymap("n", "<leader>q", ":q<CR>", opts)
 keymap("n", "<leader>w", ":w<CR>", opts)
 
 -- Normal --
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -63,7 +57,7 @@ keymap("n", "<leader>sf", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>sw", ":GrepperGrep <C-r><C-w><CR>")
+keymap("n", "<leader>sw", ":GrepperGit <C-r><C-w><CR>")
 
 -- UndoTree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -75,6 +69,8 @@ keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", opts)
 keymap("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", opts)
 keymap("n", "<leader>gk", "<cmd>Gitsigns prev_hunk<CR>", opts)
 keymap("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", opts)
+keymap("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", opts)
+keymap("n", "<leader>gc", "<cmd>DiffviewClose<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
@@ -117,8 +113,8 @@ keymap("n", "<leader>d", "\"_d")
 keymap("v", "<leader>d", "\"_d")
 
 
-keymap("n", "<C-j>", "<cmd>cnext<CR>zz")
-keymap("n", "<C-k>", "<cmd>cprev<CR>zz")
+keymap("n", "<C-n>", "<cmd>cnext<CR>zz")
+keymap("n", "<C-t>", "<cmd>cprev<CR>zz")
 keymap("n", "<leader>j", "<cmd>lnext<CR>zz")
 keymap("n", "<leader>k", "<cmd>lprev<CR>zz")
 

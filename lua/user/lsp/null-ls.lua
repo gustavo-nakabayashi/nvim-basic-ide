@@ -15,9 +15,13 @@ null_ls.setup {
     formatting.prettier.with {
       extra_filetypes = { "toml", "liquid" }
     },
-    formatting.black.with { extra_args = { "--fast" } },
+    formatting.black.with { extra_args = { "--fast", "--line-length=120", "--skip-string-normalization" } },
     formatting.stylua,
+    formatting.eslint.with {
+      filetypes = { "typescript", "javascript" }
+    },
     formatting.google_java_format,
     diagnostics.flake8,
+    diagnostics.eslint,
   },
 }

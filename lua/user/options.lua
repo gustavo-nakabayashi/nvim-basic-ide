@@ -43,3 +43,4 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters
 vim.opt.linebreak = true
 vim.opt.guicursor = "n-v-c-i:block"
 
+vim.g.gruvbox_contrast_dark='hard'
