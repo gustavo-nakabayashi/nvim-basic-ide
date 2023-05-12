@@ -13,7 +13,7 @@ null_ls.setup {
   debug = false,
   sources = {
     formatting.prettier.with {
-      extra_filetypes = { "toml", "liquid" }
+      filetypes = { "toml", "liquid" }
     },
     formatting.black.with { extra_args = { "--fast", "--line-length=120", "--skip-string-normalization" } },
     formatting.stylua,
