@@ -55,7 +55,7 @@ function M.config()
       -- lualine_y = { "filetype" },
       -- lualine_z = { "progress" },
       lualine_a = { "mode" },
-      lualine_b = { "branch", filename },
+      lualine_b = { "branch", "filename" },
       lualine_c = { diff },
       lualine_x = { "diagnostics", copilot },
       lualine_y = { "filetype" },
