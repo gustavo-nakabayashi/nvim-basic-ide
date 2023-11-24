@@ -21,8 +21,14 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
+M.on_init = function(client, initialization_result)
+  if client.server_capabilities then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.semanticTokensProvider = nil  -- turn off semantic tokens
+  end
+end
+
 M.on_attach = function(client, bufnr)
-  client.server_capabilities.semanticTokensProvider = nil
   lsp_keymaps(bufnr)
 end
 
@@ -103,6 +109,7 @@ function M.config()
   for _, server in pairs(servers) do
     local opts = {
       on_attach = M.on_attach,
+      on_init = M.on_init,
       capabilities = M.common_capabilities(),
     }
 
