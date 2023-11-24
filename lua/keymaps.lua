@@ -3,14 +3,6 @@ local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
-
-
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-
--- keymap to open nvim config
-keymap("n", "<leader>lc", ":e $MYVIMRC <CR>", opts)
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -19,7 +11,16 @@ keymap("n", "<leader>lc", ":e $MYVIMRC <CR>", opts)
 --   term_mode = "t",
 --   command_mode = "c",
 
-keymap("n", "<leader>q", ":q<CR>", opts)
+
+--Remap space as leader key
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+
+keymap("n", "<C-Space>", "<cmd>WhichKey \\<space><cr>", opts)
+
+-- keymap to open nvim config
+keymap("n", "<leader>lc", ":e $MYVIMRC <CR>", opts)
+
 keymap("n", "<leader>w", ":w<CR>", opts)
 
 -- Normal --
@@ -59,52 +60,9 @@ keymap("v", ">", ">gv", opts)
 
 -- Plugins --
 
--- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>sf", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>sg", ":Telescope git_files<CR>", opts)
-keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>sw", ":GrepperGit <C-r><C-w><CR>")
-
--- Trouble
-keymap("n", "<leader>tt", ":TroubleToggle<CR>", opts)
-keymap("n", "<leader>tw", ":TroubleToggle workspace_diagnostics<CR>", opts)
-keymap("n", "<leader>td", ":TroubleToggle document_diagnostics<CR>", opts)
-keymap("n", "<leader>tq", ":TroubleToggle quickfix<CR>", opts)
-keymap("n", "<leader>tr", ":TroubleToggle lsp_references<CR>", opts)
-
 -- UndoTree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
-
--- Git
-keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", opts)
-keymap("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", opts)
-keymap("n", "<leader>gk", "<cmd>Gitsigns prev_hunk<CR>", opts)
-keymap("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", opts)
-
--- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
-
--- DAP
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
-
--- Lsp
-keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 
 -- Primeagen keybindings
 
@@ -135,3 +93,4 @@ keymap("n", "<leader>j", "<cmd>lnext<CR>zz")
 keymap("n", "<leader>k", "<cmd>lprev<CR>zz")
 
 keymap("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
