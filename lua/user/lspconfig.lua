@@ -22,6 +22,7 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
   lsp_keymaps(bufnr)
 end
 
@@ -60,6 +61,9 @@ function M.config()
     "yamlls",
     "marksman",
     "tailwindcss",
+    "gopls",
+    "solargraph",
+    "theme_check"
   }
 
   local default_diagnostic_config = {

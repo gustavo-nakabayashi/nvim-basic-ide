@@ -1,36 +1,138 @@
+-- Shorten function name
 local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+-- Silent keymap option
+local opts = { silent = true }
 
-keymap("n", "<Space>", "", opts)
+
+
+--Remap space as leader key
+keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
-keymap("n", "<C-Space>", "<cmd>WhichKey \\<space><cr>", opts)
-keymap("n", "<C-i>", "<C-i>", opts)
+-- keymap to open nvim config
+keymap("n", "<leader>lc", ":e $MYVIMRC <CR>", opts)
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
 
--- Better window navigation
-keymap("n", "<m-h>", "<C-w>h", opts)
-keymap("n", "<m-j>", "<C-w>j", opts)
-keymap("n", "<m-k>", "<C-w>k", opts)
-keymap("n", "<m-l>", "<C-w>l", opts)
-keymap("n", "<m-tab>", "<c-6>", opts)
+keymap("n", "<leader>q", ":q<CR>", opts)
+keymap("n", "<leader>w", ":w<CR>", opts)
 
-keymap("n", "n", "nzz", opts)
-keymap("n", "N", "Nzz", opts)
-keymap("n", "*", "*zz", opts)
-keymap("n", "#", "#zz", opts)
-keymap("n", "g*", "g*zz", opts)
-keymap("n", "g#", "g#zz", opts)
+-- Normal --
+-- Resize with arrows
+keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+-- Move to window using the <ctrl> hjkl keys
+keymap("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+keymap("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+keymap("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+keymap("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+
+-- Navigate buffers
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Clear highlights
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+
+-- Close buffers
+keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+
+-- Better paste
+keymap("v", "p", '"_dP', opts)
+
+-- Insert --
+-- Press jk fast to enter
+keymap("i", "jk", "<ESC>", opts)
+
+-- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
-keymap("x", "p", [["_dP]])
+-- Plugins --
 
-vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]]
-vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
--- vim.cmd [[:amenu 10.120 mousemenu.-sep- *]]
+-- NvimTree
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
-vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
-vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
+-- Telescope
+keymap("n", "<leader>sf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>sg", ":Telescope git_files<CR>", opts)
+keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>sw", ":GrepperGit <C-r><C-w><CR>")
+
+-- Trouble
+keymap("n", "<leader>tt", ":TroubleToggle<CR>", opts)
+keymap("n", "<leader>tw", ":TroubleToggle workspace_diagnostics<CR>", opts)
+keymap("n", "<leader>td", ":TroubleToggle document_diagnostics<CR>", opts)
+keymap("n", "<leader>tq", ":TroubleToggle quickfix<CR>", opts)
+keymap("n", "<leader>tr", ":TroubleToggle lsp_references<CR>", opts)
+
+-- UndoTree
+keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+
+-- Git
+keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", opts)
+keymap("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", opts)
+keymap("n", "<leader>gk", "<cmd>Gitsigns prev_hunk<CR>", opts)
+keymap("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", opts)
+
+-- Comment
+keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
+keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
+
+-- DAP
+keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
+keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
+keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
+keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
+keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+
+-- Lsp
+keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Primeagen keybindings
+
+keymap("v", "J", ":m '>+1<CR>gv=gv")
+keymap("v", "K", ":m '<-2<CR>gv=gv")
+
+keymap("n", "J", "mzJ`z")
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
+
+-- greatest remap ever
+keymap("x", "<leader>p", "\"_dP")
+
+-- next greatest remap ever : asbjornHaland
+keymap("n", "<leader>y", "\"+y")
+keymap("v", "<leader>y", "\"+y")
+keymap("n", "<leader>Y", "\"+Y")
+
+keymap("n", "<leader>d", "\"_d")
+keymap("v", "<leader>d", "\"_d")
+
+
+keymap("n", "<C-n>", "<cmd>cnext<CR>zz")
+keymap("n", "<C-p>", "<cmd>cprev<CR>zz")
+keymap("n", "<leader>j", "<cmd>lnext<CR>zz")
+keymap("n", "<leader>k", "<cmd>lprev<CR>zz")
+
+keymap("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
