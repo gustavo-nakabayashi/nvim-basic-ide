@@ -2,7 +2,6 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile" },
   build = ":TSUpdate",
-  commit = "f197a15b0d1e8d555263af20add51450e5aaa1f0",
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -11,12 +10,10 @@ local M = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       event = "VeryLazy",
-      commit = "92e688f013c69f90c9bbd596019ec10235bc51de",
     },
     -- {
     --   "windwp/nvim-ts-autotag",
     --   event = "VeryLazy",
-    --   commit = "6be1192965df35f94b8ea6d323354f7dc7a557e4",
     -- },
   },
 }
