@@ -32,7 +32,7 @@ vim.opt.ruler = false
 vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
 vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
-vim.opt.wrap = false -- display lines as one long line
+vim.opt.wrap = true -- display lines as one long line
 vim.opt.scrolloff = 0
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
@@ -51,3 +51,22 @@ vim.cmd [[set iskeyword+=-]]
 
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
+
+vim.cmd "set pumblend=0"
+
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.breakindentopt = "shift:2,min:40,sbr"
+vim.opt.showbreak = ">>"
+
+-- vim.cmd(":set wrap")
+-- vim.cmd(":set linebreak")
+-- vim.cmd(":set breakindent")
+-- vim.cmd(":set breakindentopt=shift:2,min:40,sbr")
+-- vim.cmd(":set showbreak=>>")
+
+vim.env.PATH = "/Users/gustavo/.local/share/mise/installs/node/lts/bin/node:" .. vim.env.PATH
+
+vim.g.node_host_prog = vim.fn.expand('~/.local/share/mise/installs/node/lts/bin/node')
+
+

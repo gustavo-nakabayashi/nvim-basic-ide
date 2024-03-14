@@ -10,11 +10,41 @@ local M = {
   },
 }
 
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+    return string.match(value.filename, 'react/index.d.ts') == nil end
+
+local function on_list(options)
+    -- [https://github.com/typescript-language-server/typescript-language-server/issues/216](https://github.com/typescript-language-server/typescript-language-server/issues/216)
+    local items = options.items
+    if #items > 1 then 
+        items = filter(items, filterReactDTS)
+    end
+
+    vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
+    vim.api.nvim_command('cfirst')
+end
+
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  -- keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition{on_list=on_list} end, opts)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -69,7 +99,9 @@ function M.config()
     "tailwindcss",
     "gopls",
     "solargraph",
-    "theme_check"
+    "elixirls",
+    "cssmodules_ls",
+    "theme_check",
   }
 
   local default_diagnostic_config = {
@@ -112,6 +144,22 @@ function M.config()
       on_init = M.on_init,
       capabilities = M.common_capabilities(),
     }
+
+    if server == "gopls" then
+      opts.settings = {
+        gopls = {
+          completeUnimported = true,
+        }
+      }
+    end
+
+    if server == "theme_check" then
+      opts.filetypes = { "liquid", "json", "html" }
+    end
+
+    if server == "elixirls" then
+      opts.cmd = {"/Users/gustavo/.local/share/nvim/mason/bin/elixir-ls"}
+    end
 
     local require_ok, settings = pcall(require, "user.lspsettings." .. server)
     if require_ok then

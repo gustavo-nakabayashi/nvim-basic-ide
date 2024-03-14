@@ -59,3 +59,31 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.spell = true
   end,
 })
+
+-- vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+--   pattern = {"*"},
+--   callback = function()
+--     vim.cmd "highlight NonText guibg=none"
+--     vim.cmd "highlight Normal guibg=none"
+--     vim.cmd "highlight EndOfBuffer guibg=none"
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = { "*.liquid" },
+--   callback = function()
+--     vim.cmd "setlocal filetype=html"
+--     vim.cmd "setlocal syntax=liquid"
+--   end,
+-- })
+
+
+-- vim.api.nvim_create_autocmd("VimEnter", {
+-- 	callback = function()
+--     harpoon = require("harpoon")
+--     harpoon:list():select(4)
+--     harpoon:list():select(3)
+--     harpoon:list():select(2)
+--     harpoon:list():select(1)
+-- 	end,
+-- })

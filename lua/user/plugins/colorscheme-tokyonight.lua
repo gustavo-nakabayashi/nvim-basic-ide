@@ -6,6 +6,9 @@ local M = {
 
 M.name = "tokyonight-storm"
 function M.config()
+  require('tokyonight').setup({
+    transparent = true
+  })
   local status_ok, _ = pcall(vim.cmd.colorscheme, M.name)
   if not status_ok then
     return

@@ -18,6 +18,7 @@ M.servers = {
   "jsonls",
   "yamlls",
   "marksman",
+  "elixirls",
   "tailwindcss",
 }
 

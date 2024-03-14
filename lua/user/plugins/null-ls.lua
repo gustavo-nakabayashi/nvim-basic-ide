@@ -7,6 +7,8 @@ function M.config()
 
   local formatting = null_ls.builtins.formatting
 
+  local diagnostics = null_ls.builtins.diagnostics
+
   null_ls.setup {
     sources = {
       formatting.stylua,
@@ -16,7 +18,10 @@ function M.config()
       },
       formatting.black.with { extra_args = { "--fast" } },
       formatting.stylua,
-      formatting.google_java_format
+      formatting.google_java_format,
+      formatting.gofumpt,
+      formatting.goimports_reviser,
+      diagnostics.eslint
     },
   }
 end

@@ -38,6 +38,34 @@ function M.config()
     return ""
   end
 
+  local function basename(str)
+    return string.gsub(str, "(.*/)(.*)", "%2")
+  end
+
+  local function lualine_harpoon()
+    local harpoon = require("harpoon")
+    local keys = { "1", "2", "3", "4" }
+    local currentfile = basename(vim.fn.expand("%:p"))
+
+    local s = ""
+
+    for i, v in ipairs(harpoon:list().items) do
+      local fn = basename(v.value)
+      local prefix = fn ~= currentfile and keys[i] or "󰛢"
+
+      s = s .. prefix .. " " .. fn
+      if i < #harpoon:list().items then
+        s = s .. " | "
+      end
+    end
+
+    if #harpoon:list().items == 0 then
+      s = s .. "󰛢"
+    end
+
+    return s
+  end
+
   require("lualine").setup {
     options = {
       -- component_separators = { left = "", right = "" },
@@ -46,6 +74,14 @@ function M.config()
       section_separators = { left = "", right = "" },
 
       ignore_focus = { "NvimTree" },
+    },
+    tabline = {
+      lualine_a = { lualine_harpoon },
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
     },
     sections = {
       -- lualine_a = { {"branch", icon =""} },
