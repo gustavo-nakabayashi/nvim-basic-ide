@@ -42,11 +42,6 @@ function M.config()
 
     autotag = { enable = true },
 
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
-
     custom_captures = {
       -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
       ["Statement"] = "#FF0000",
