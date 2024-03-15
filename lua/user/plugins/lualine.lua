@@ -41,28 +41,54 @@ function M.config()
     return string.gsub(str, "(.*/)(.*)", "%2")
   end
 
+
   local function lualine_harpoon()
-    local harpoon = require("harpoon")
+    local harpoon = require "harpoon"
     local keys = { "1", "2", "3", "4" }
-    local currentfile = basename(vim.fn.expand("%:p"))
+    local currentfile = vim.fn.expand "%:t" -- Using ':t' modifier to get the basename
 
     local s = ""
 
-    for i, v in ipairs(harpoon:list().items) do
-      local fn = basename(v.value)
-      local prefix = fn ~= currentfile and keys[i] or "󰛢"
+    local statusline_fg = vim.api.nvim_get_hl_by_name('StatusLine', true).foreground
+    local statusline_bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
+    local lualine_a_fg = vim.api.nvim_get_hl_by_name('lualine_a_normal', true).foreground
+    local lualine_a_bg = vim.api.nvim_get_hl_by_name('lualine_a_normal', true).background
 
-      s = s .. prefix .. " " .. fn
-      if i < #harpoon:list().items then
-        s = s .. " | "
+    vim.api.nvim_set_hl(0, 'EndActive', { bg = statusline_bg, fg = lualine_a_bg })
+    vim.api.nvim_set_hl(0, 'EndInactive', { bg = statusline_bg, fg = lualine_a_fg })
+
+    for i, v in ipairs(harpoon:list().items) do
+      local fn = vim.fn.fnamemodify(v.value, ":t") -- Using ':t' modifier within fnamemodify to get the basename
+      if fn == currentfile then
+        -- Item is active, use HarpoonActive highlight
+        if i > 1 then
+          s = s .. "%#lualine_a_normal#" .. "" .. keys[i] .. " " .. fn 
+        else
+          s = s .. "%#lualine_a_normal#" .. " " .. keys[i] .. " " .. fn
+        end
+
+        if i < #harpoon:list().items then
+          s = s .. "%#lualine_b_normal#" .. "" 
+        else
+          s = s .. "%#EndActive#" .. "" 
+        end
+      else
+        -- Item is inactive, use HarpoonInactive highlight
+        s = s .. "%#lualine_b_normal#" .. " " .. keys[i] .. " " .. fn
+
+        if i >= #harpoon:list().items then
+          s = s .. "%#EndInactive#" .. "" 
+        else
+          s = s .. " " 
+        end
       end
     end
 
     if #harpoon:list().items == 0 then
-      s = s .. "󰛢"
+      s = "%#lualine_b_normal#" .. "󰛢" -- Using HarpoonInactive highlight for consistency
     end
 
-    return s
+    return s .. "%#StatusLine#" -- Reset to normal highlighting at the end
   end
 
   require("lualine").setup {
@@ -71,10 +97,10 @@ function M.config()
       -- section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-
       ignore_focus = { "NvimTree" },
     },
     tabline = {
+
       lualine_a = { lualine_harpoon },
       lualine_b = {},
       lualine_c = {},
