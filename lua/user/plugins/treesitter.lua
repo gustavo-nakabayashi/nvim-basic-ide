@@ -30,7 +30,7 @@ function M.config()
     sync_install = false,
     highlight = {
       enable = true,
-      disable = { "markdown" },
+      disable = { "markdown", "vimdoc" },
     },
 
     indent = { enable = true },

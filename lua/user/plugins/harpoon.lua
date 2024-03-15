@@ -19,7 +19,7 @@ function M.config()
           -- Fallback to cwd if not in a git repository or branch name is not available
           return vim.loop.cwd()
         else
-          return branch_name
+          return branch_name .. vim.loop.cwd()
         end
       end,
     },
