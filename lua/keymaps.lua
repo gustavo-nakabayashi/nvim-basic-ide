@@ -11,7 +11,6 @@ local opts = { silent = true }
 --   term_mode = "t",
 --   command_mode = "c",
 
-
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -64,7 +63,6 @@ keymap("v", ">", ">gv", opts)
 -- UndoTree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
-
 -- Primeagen keybindings
 
 keymap("v", "J", ":m '>+1<CR>gv=gv")
@@ -77,16 +75,15 @@ keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
 -- greatest remap ever
-keymap("x", "<leader>p", "\"_dP")
+keymap("x", "<leader>p", '"_dP')
 
 -- next greatest remap ever : asbjornHaland
-keymap("n", "<leader>y", "\"+y")
-keymap("v", "<leader>y", "\"+y")
-keymap("n", "<leader>Y", "\"+Y")
+keymap("n", "<leader>y", '"+y')
+keymap("v", "<leader>y", '"+y')
+keymap("n", "<leader>Y", '"+Y')
 
-keymap("n", "<leader>d", "\"_d")
-keymap("v", "<leader>d", "\"_d")
-
+keymap("n", "<leader>d", '"_d')
+keymap("v", "<leader>d", '"_d')
 
 keymap("n", "<C-n>", "<cmd>cnext<CR>zz")
 keymap("n", "<C-p>", "<cmd>cprev<CR>zz")
@@ -94,4 +91,3 @@ keymap("n", "<leader>j", "<cmd>lnext<CR>zz")
 keymap("n", "<leader>k", "<cmd>lprev<CR>zz")
 
 keymap("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-

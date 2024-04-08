@@ -11,6 +11,10 @@ local M = {
       "JoosepAlviste/nvim-ts-context-commentstring",
       event = "VeryLazy",
     },
+    {
+      "RRethy/nvim-treesitter-textsubjects",
+      event = "VeryLazy",
+    },
     -- {
     --   "windwp/nvim-ts-autotag",
     --   event = "VeryLazy",
@@ -18,14 +22,14 @@ local M = {
   },
 }
 function M.config()
-  local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-
+  -- local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
   -- parser_config.html.filetype = { 'astro', 'html', 'liquid' }
 
   -- vim.treesitter.language.register('html', 'liquid')  -- the someft filetype will use the python parser and queries.
 
+---@diagnostic disable-next-line: missing-fields
   require("nvim-treesitter.configs").setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "typescript", "javascript"  }, -- put the language you want in this array
+    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "typescript", "javascript" }, -- put the language you want in this array
     ignore_install = { "" },
     sync_install = false,
     highlight = {
@@ -61,10 +65,17 @@ function M.config()
         },
       },
     },
+    textsubjects = {
+      enable = true,
+      prev_selection = ",", -- (Optional) keymap to select the previous selection
+      keymaps = {
+        ["."] = "textsubjects-smart",
+        [";"] = "textsubjects-container-outer",
+        ["i;"] = "textsubjects-container-inner",
+        ["i;"] = { "textsubjects-container-inner", desc = "Select inside containers (classes, functions, etc.)" },
+      },
+    },
   }
-
-
-
 end
 
 return M

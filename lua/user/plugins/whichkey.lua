@@ -46,7 +46,7 @@ function M.config()
       name = "Find",
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-      f = { "<cmd>Telescope find_files<cr>", "Find files" },
+      f = { "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'fd', '--type', 'f', '--hidden', '--no-require-git', '--exclude', '.git' }})<cr>", "Find files" },
       p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
       t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
       s = { "<cmd>Telescope grep_string<cr>", "Find String" },

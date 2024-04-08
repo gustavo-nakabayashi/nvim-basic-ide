@@ -8,20 +8,19 @@ function M.config()
   local formatting = null_ls.builtins.formatting
 
   local diagnostics = null_ls.builtins.diagnostics
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
   null_ls.setup {
     sources = {
       formatting.stylua,
-      formatting.prettier,
       formatting.prettier.with {
         extra_filetypes = { "toml", "liquid" },
       },
       formatting.black.with { extra_args = { "--fast" } },
-      formatting.stylua,
       formatting.google_java_format,
       formatting.gofumpt,
       formatting.goimports_reviser,
-      diagnostics.eslint
+      diagnostics.eslint,
     },
   }
 end

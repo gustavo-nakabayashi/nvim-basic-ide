@@ -61,10 +61,10 @@ M.on_attach = function(client, bufnr)
 end
 
 function M.common_capabilities()
-  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if status_ok then
-    return cmp_nvim_lsp.default_capabilities()
-  end
+  -- local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  -- if status_ok then
+  --   return cmp_nvim_lsp.default_capabilities()
+  -- end
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -87,19 +87,19 @@ function M.config()
     "lua_ls",
     "cssls",
     "html",
-    -- "tsserver",
-    "astro",
-    "pyright",
+    -- "tsserver", using typescript tools
+    -- "astro",
+    -- "pyright",
     "bashls",
     "jsonls",
     "yamlls",
     "marksman",
-    "tailwindcss",
-    "gopls",
-    "solargraph",
-    "elixirls",
+    -- "tailwindcss",
+    -- "gopls",
+    -- "solargraph",
+    -- "elixirls",
     "cssmodules_ls",
-    "theme_check",
+    -- "theme_check",
   }
 
   local default_diagnostic_config = {

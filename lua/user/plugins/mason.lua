@@ -11,14 +11,14 @@ M.servers = {
   "cssls",
   "html",
   "tsserver",
-  "astro",
-  "pyright",
+  -- "astro",
+  -- "pyright",
   "bashls",
   "jsonls",
   "yamlls",
   "marksman",
-  "elixirls",
-  "tailwindcss",
+  -- "elixirls",
+  -- "tailwindcss",
 }
 
 function M.config()

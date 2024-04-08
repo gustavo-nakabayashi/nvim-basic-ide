@@ -12,7 +12,7 @@ function M.config()
 	end,
 	set_light_mode = function()
 		vim.api.nvim_set_option('background', 'light')
-		vim.cmd('colorscheme github')
+		vim.cmd('colorscheme gruvbox')
 	end,
 
   }
