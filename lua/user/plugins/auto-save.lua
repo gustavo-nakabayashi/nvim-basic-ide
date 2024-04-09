@@ -12,9 +12,10 @@ function M.config()
     condition = function(buf)
       local fn = vim.fn
       local utils = require("auto-save.utils.data")
-      if vim.bo[buf].filetype == "harpoon" then
+      if vim.bo[buf].filetype == "harpoon" or vim.bo[buf].filetype:find("Neogit") then
         return false
       end
+
 
       if
         fn.getbufvar(buf, "&modifiable") == 1 and

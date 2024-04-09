@@ -90,6 +90,7 @@ function M.config()
     -- "tsserver", using typescript tools
     -- "astro",
     -- "pyright",
+    "eslint",
     "bashls",
     "jsonls",
     "yamlls",
@@ -155,8 +156,14 @@ function M.config()
       opts.filetypes = { "liquid", "json", "html" }
     end
 
+    if server == "eslint" then
+      opts.settings = {
+        workingDirectories = { mode = "auto" },
+      }
+    end
+
     if server == "elixirls" then
-      opts.cmd = {"/Users/gustavo/.local/share/nvim/mason/bin/elixir-ls"}
+      opts.cmd = { "/Users/gustavo/.local/share/nvim/mason/bin/elixir-ls" }
     end
 
     local require_ok, settings = pcall(require, "user.lspsettings." .. server)

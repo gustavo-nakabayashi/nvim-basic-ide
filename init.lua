@@ -17,10 +17,10 @@ spec "user.plugins.mason"
 spec "user.plugins.lspconfig"
 spec "user.plugins.null-ls"
 spec "user.plugins.typescript-tools"
-spec "user.plugins.neorg"
+-- spec "user.plugins.neorg"
 
 ---- Treesitter
-spec "user.plugins.illuminate"
+-- spec "user.plugins.illuminate"
 spec "user.plugins.treesitter"
 spec "user.plugins.treesitter-context"
 
