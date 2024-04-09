@@ -33,6 +33,7 @@ spec "user.plugins.colorscheme-gruvbox"
 spec "user.plugins.colorscheme-tokyonight"
 -- spec "user.plugins.colorscheme-vim-colors"
 spec "user.plugins.colorscheme-solarized"
+spec "user.plugins.colorscheme-nightfox"
 
 -- Git
 spec "user.plugins.diffview"
