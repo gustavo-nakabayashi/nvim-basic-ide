@@ -4,7 +4,6 @@ local M = {
   priority = 1000, -- make sure to load this before all the other start plugins
 }
 
-M.name = "tokyonight-storm"
 function M.config()
   require('tokyonight').setup({
     transparent = true
