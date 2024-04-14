@@ -12,34 +12,34 @@ function M.config()
     symbols = { added = icons.git.LineAdded, modified = icons.git.LineModified, removed = icons.git.LineRemoved }, -- Changes the symbols used by the diff.
   }
 
-  local copilot = function()
-    local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
-    if #buf_clients == 0 then
-      return "LSP Inactive"
-    end
+  -- local copilot = function()
+  --   local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
+  --   if #buf_clients == 0 then
+  --     return "LSP Inactive"
+  --   end
+  --
+  --   local buf_client_names = {}
+  --   local copilot_active = false
+  --
+  --   for _, client in pairs(buf_clients) do
+  --     if client.name ~= "null-ls" and client.name ~= "copilot" then
+  --       table.insert(buf_client_names, client.name)
+  --     end
+  --
+  --     if client.name == "copilot" then
+  --       copilot_active = true
+  --     end
+  --   end
+  --
+  --   if copilot_active then
+  --     return "%#Copilot#" .. icons.git.Octoface .. "%*"
+  --   end
+  --   return ""
+  -- end
 
-    local buf_client_names = {}
-    local copilot_active = false
-
-    for _, client in pairs(buf_clients) do
-      if client.name ~= "null-ls" and client.name ~= "copilot" then
-        table.insert(buf_client_names, client.name)
-      end
-
-      if client.name == "copilot" then
-        copilot_active = true
-      end
-    end
-
-    if copilot_active then
-      return "%#Copilot#" .. icons.git.Octoface .. "%*"
-    end
-    return ""
-  end
-
-  local function basename(str)
-    return string.gsub(str, "(.*/)(.*)", "%2")
-  end
+  -- local function basename(str)
+  --   return string.gsub(str, "(.*/)(.*)", "%2")
+  -- end
 
 
   local function lualine_harpoon()
