@@ -84,7 +84,13 @@ function M.config()
         "Checkout commit(for current file)",
       },
       d = {
-        "<cmd>Gitsigns diffthis HEAD<cr>",
+        function()
+          if next(require("diffview.lib").views) == nil then
+            vim.cmd "DiffviewOpen"
+          else
+            vim.cmd "DiffviewClose"
+          end
+        end,
         "Git Diff",
       },
     },
