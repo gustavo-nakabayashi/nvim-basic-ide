@@ -11,7 +11,7 @@ function M.config()
 		vim.cmd('colorscheme tokyonight-storm')
 	end,
 	set_light_mode = function()
-		-- vim.api.nvim_set_option('background', 'light')
+		vim.api.nvim_set_option('background', 'light')
 		vim.cmd('colorscheme dayfox')
 	end,
 
