@@ -8,6 +8,7 @@ local M = {
   },
 }
 
+-- Remove doubled react node defitions
 local function filter(arr, fn)
   if type(arr) ~= "table" then
     return arr

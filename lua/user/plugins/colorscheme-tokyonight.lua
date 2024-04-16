@@ -8,10 +8,11 @@ function M.config()
   require('tokyonight').setup({
     transparent = true
   })
-  local status_ok, _ = pcall(vim.cmd.colorscheme, M.name)
-  if not status_ok then
-    return
-  end
+
+  -- local status_ok, _ = pcall(vim.cmd.colorscheme, M.name)
+  -- if not status_ok then
+  --   return
+  -- end
 end
 
 return M
